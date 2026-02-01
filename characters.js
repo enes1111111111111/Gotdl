@@ -5,7 +5,7 @@ const characters = [
     gender: "Male",
     origin: "North",
     age: 24,
-    image:"image/jon.jpg"
+    image: "image/jon.jpg"
   },
   {
     name: "Daenerys Targaryen",
@@ -13,7 +13,7 @@ const characters = [
     gender: "Female",
     origin: "Essos",
     age: 23,
-    image:"image/daenerys.jpg"
+    image: "image/daenerys.jpg"
   },
   {
     name: "Tyrion Lannister",
@@ -21,6 +21,6 @@ const characters = [
     gender: "Male",
     origin: "Westerlands",
     age: 38,
-    images:"image/tyrion.jpg"
+    image: "image/tyrion.jpg"
   }
 ];
