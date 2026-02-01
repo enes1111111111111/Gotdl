@@ -1,0 +1,102 @@
+body {
+  background: #111;
+  color: white;
+  font-family: Arial;
+  text-align: center;
+}
+
+input {
+  padding: 10px;
+  width: 250px;
+}
+
+button {
+  padding: 10px;
+  margin-left: 5px;
+}
+
+.result {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.box {
+  padding: 10px;
+  margin: 4px;
+  border-radius: 5px;
+  min-width: 120px;
+}
+
+.correct {
+  background: green;
+}
+
+.wrong {
+  background: red;
+}#suggestions {
+  max-width: 260px;
+  margin: 10px auto;
+  background: #222;
+  border-radius: 5px;
+}
+
+.suggestion {
+  padding: 8px;
+  cursor: pointer;
+  border-bottom: 1px solid #333;
+}
+
+.suggestion:hover {
+  background: #444;
+}.category {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-bottom: 4px;
+}
+
+.value {
+  font-size: 16px;
+  font-weight: bold;
+}.box {
+  background: #111;
+  color: white;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+/* DOĞRU */
+.box.correct {
+  background-color: #2ecc71;
+}
+
+/* YAKIN */
+.box.close {
+  background-color: #e74c3c;
+  color: white;
+}
+
+/* YANLIŞ */
+.box.wrong {
+  background-color: #e74c3c;
+}.char-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 6px auto;
+  display: block;
+}.suggestion {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.suggestion-img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 8px;
+}
