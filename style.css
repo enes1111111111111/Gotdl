@@ -1,0 +1,366 @@
+/* =========================
+   MOBİL ZOOM - SAYFAYI KÜÇÜLT
+   ========================= */
+
+/* 1. Tüm sayfayı küçült (en iyi çözüm) */
+html {
+  zoom: 0.85; /* Sayfayı %85 küçült */
+  transform-origin: top center;
+}
+
+/* 2. Viewport ayarı için destek */
+@media screen and (max-width: 768px) {
+  body {
+    padding: 10px;
+    transform: scale(0.9); /* Alternatif yöntem */
+    transform-origin: top center;
+  }
+  
+  /* 3. Kutuları daha da küçült */
+  .box {
+    min-width: 105px !important; /* Daha küçük */
+    max-width: 105px !important;
+    padding: 6px !important;
+    margin: 3px !important;
+  }
+  
+  .category {
+    font-size: 10px !important; /* Daha küçük font */
+  }
+  
+  .value {
+    font-size: 14px !important; /* Daha küçük font */
+  }
+  
+  .initials-circle-large {
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 16px !important;
+  }
+}
+
+/* 4. Çok küçük ekranlar için */
+@media screen and (max-width: 480px) {
+  html {
+    zoom: 0.8; /* Daha da küçült */
+  }
+  
+  .box {
+    min-width: 95px !important;
+    max-width: 95px !important;
+  }
+  
+  .category {
+    font-size: 9px !important;
+  }
+  
+  .value {
+    font-size: 12px !important;
+  }
+}
+
+/* =========================
+   GENEL (ESKİ CSS - AYNI KALACAK)
+   ========================= */
+
+body {
+  background: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+/* ... sonrası aynı ... *//* =========================
+   GENEL
+   ========================= */
+
+body {
+  background: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto; /* Sayfa tamamen yatay kaydırılabilir */
+  white-space: nowrap; /* Satır içi tüm kutular yan yana */
+}
+
+/* =========================
+   INPUT VE BUTON
+   ========================= */
+
+input {
+  padding: 10px;
+  width: 250px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+/* =========================
+   DENEME SAYACI
+   ========================= */
+
+#attemptCounter {
+  margin: 12px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #f1c40f;
+  display: inline-block;
+}
+
+/* =========================
+   AUTOCOMPLETE
+   ========================= */
+
+#suggestions {
+  max-width: 260px;
+  margin: 10px auto;
+  background: #222;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.suggestion {
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;
+  cursor: pointer;
+  border-bottom: 1px solid #333;
+}
+
+.suggestion:hover {
+  background: #444;
+}
+
+.suggestion-img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+/* =========================
+   SONUÇ TABLOSU
+   ========================= */
+
+/* Her tahmin bir satır olacak */
+.results-row {
+  display: inline-block;     /* Satır yan yana dizilecek kutular için */
+  margin-bottom: 12px;
+  white-space: nowrap;       /* Kutular satırda kalacak */
+}
+
+/* Kutular yan yana */
+.box {
+  display: inline-block;
+  background: #111;
+  color: white;
+  border-radius: 6px;
+  padding: 8px;
+  margin: 4px;
+  min-width: 120px;
+  animation: slideFadeIn 0.4s ease forwards;
+}
+
+.category {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-bottom: 4px;
+}
+
+.value {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.char-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 6px auto;
+  display: block;
+}
+
+/* =========================
+   DURUM RENKLERİ
+   ========================= */
+
+.box.correct {
+  background-color: #2ecc71;
+}
+
+.box.wrong,
+.box.close {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.box.wrong.shake {
+  animation: shake 0.3s;
+}
+
+/* =========================
+   KUTU ANİMASYONLARI
+   ========================= */
+
+@keyframes slideFadeIn {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}
+
+/* =========================
+   🎉 KONFETİ
+   ========================= */
+
+#confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.confetti {
+  position: absolute;
+  top: -10px;
+  width: 10px;
+  height: 14px;
+  opacity: 0.9;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}/* =========================
+   10 KUTU İÇİN KÜÇÜLTME
+   ========================= */
+
+/* Tüm kutular için */
+.box {
+  min-width: 105px !important; /* Daha küçük */
+  max-width: 105px !important;
+  padding: 6px !important;
+  margin: 3px !important;
+}
+
+/* Kategori yazıları */
+.category {
+  font-size: 10px !important; /* Daha küçük */
+  margin-bottom: 3px !important;
+}
+
+/* Değer yazıları */
+.value {
+  font-size: 13px !important; /* Daha küçük */
+  line-height: 1.2 !important;
+}
+
+/* Resimler için */
+.char-img {
+  width: 50px !important; /* 60px'ten 50px'e */
+  height: 50px !important; /* 60px'ten 50px'e */
+  margin: 4px auto !important;
+}
+
+/* =========================
+   MOBİL İÇİN EK KÜÇÜLTME
+   ========================= */
+
+@media (max-width: 768px) {
+  .box {
+    min-width: 95px !important; /* Daha da küçük */
+    max-width: 95px !important;
+    padding: 5px !important;
+  }
+  
+  .category {
+    font-size: 9px !important;
+  }
+  
+  .value {
+    font-size: 12px !important;
+  }
+  
+  .char-img {
+    width: 45px !important;
+    height: 45px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .box {
+    min-width: 90px !important; /* Çok küçük ekranlar */
+    max-width: 90px !important;
+    padding: 4px !important;
+  }
+  
+  .category {
+    font-size: 8px !important;
+  }
+  
+  .value {
+    font-size: 11px !important;
+  }
+  
+  .char-img {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+/* =========================
+   YATAY MOD İÇİN
+   ========================= */
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .box {
+    min-width: 85px !important;
+    max-width: 85px !important;
+    padding: 3px !important;
+  }
+  
+  .category {
+    font-size: 7px !important;
+  }
+  
+  .value {
+    font-size: 10px !important;
+  }
+  
+  .char-img {
+    width: 35px !important;
+    height: 35px !important;
+    margin: 2px auto !important;
+  }
+}
